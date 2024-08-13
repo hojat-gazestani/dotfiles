@@ -1,0 +1,46 @@
+# This is Git's per-user configuration file.
+[user]
+	name = hojat-gazestani
+	email = hojatgazestani@gmail.com
+# Please adapt and uncomment the following lines:
+#	name = Hojat
+#	email = hojat@Hojats-MacBook-Pro.local
+#
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only	
+[delta]
+    features = side-by-side line-numbers decorations
+    syntax-theme = Monokai Extended	
+    line-numbers = true
+    plus-color = "#012800"
+    minus-color = "#340001"
+    side-by-side = false
+    whitespace-error-style = 22 reverse
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+[init]
+	defaultbranch = main
+[help "*"]
+	autocorrect = prompt
+
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        new = green bold
+        old = red bold
+        whitespace = red reverse
+
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
