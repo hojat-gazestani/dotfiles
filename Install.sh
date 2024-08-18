@@ -29,22 +29,25 @@ success_message() {
 }
 
 warning_message "Updating packages"
-#sudo apt update -qq -y  || { error_message "Updating packages failed; exiting"; }
+sudo apt update -qq -y  || { error_message "Updating packages failed; exiting"; }
 
 warning_message "Installing zsh"
-#sudo apt install zsh -qq -y || { error_message "Installing zsh failed; exiting"; }
+sudo apt install zsh -qq -y || { error_message "Installing zsh failed; exiting"; }
 
 warning_message "Checking zsh Installation"
-#zsh --version || { error_message "Checking zsh Installation failed; exiting"; }
+zsh --version || { error_message "Checking zsh Installation failed; exiting"; }
 
 warning_message "Seting Zsh as Default Shell"
-#chsh -s $(which zsh) || { error_message "Seting Zsh as Default Shell failed; exiting"; }
+chsh -s $(which zsh) || { error_message "Seting Zsh as Default Shell failed; exiting"; }
 
 warning_message "Install Oh My Zsh"
-#sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" || { error_message "Install Oh My Zsh failed; exiting"; }
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" || { error_message "Install Oh My Zsh failed; exiting"; }
 
 warning_message "Enabling Auto-Suggestions"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || { error_message "Enable Auto-Suggestions failed; exiting"; }
 
 warning_message "Enabling Syntax Highlighting"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || { error_message "Enable Syntax Highlighting failed; exiting"; }
+
+warning_message "Installing starship"
+curl -sS https://starship.rs/install.sh | sudo sh || { error_message "Installing starship failed; exiting"; }
