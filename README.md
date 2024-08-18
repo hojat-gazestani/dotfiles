@@ -32,7 +32,7 @@ Before running the scripts, ensure you have the following installed:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/dotfiles.git
+   git clone https://github.com/hojat-gazestani/dotfiles.git
    cd dotfiles
 
 2. **Run the Install Script:**
