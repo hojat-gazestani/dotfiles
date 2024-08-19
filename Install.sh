@@ -51,3 +51,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 warning_message "Installing starship"
 curl -sS https://starship.rs/install.sh | sudo sh || { error_message "Installing starship failed; exiting"; }
+
+warning_message "Cloning zsh you should use"
+git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use || { error_message "Installing zsh you should use failed; exiting"; }
