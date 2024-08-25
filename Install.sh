@@ -41,7 +41,8 @@ warning_message "Seting Zsh as Default Shell"
 chsh -s $(which zsh) || { error_message "Seting Zsh as Default Shell failed; exiting"; }
 
 warning_message "Install Oh My Zsh"
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" || { error_message "Install Oh My Zsh failed; exiting"; }
+#sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" || { error_message "Install Oh My Zsh failed; exiting"; }
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || { error_message "Install Oh My Zsh failed; exiting"; }
 
 warning_message "Enabling Auto-Suggestions"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || { error_message "Enable Auto-Suggestions failed; exiting"; }
