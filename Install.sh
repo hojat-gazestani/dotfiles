@@ -32,7 +32,7 @@ warning_message "Updating packages"
 sudo apt update -qq -y  || { error_message "Updating packages failed; exiting"; }
 
 warning_message "Installing zsh"
-sudo apt install zsh -qq -y || { error_message "Installing zsh failed; exiting"; }
+sudo apt install zsh build-essential curl file git git-core curl fonts-powerline -qq -y || { error_message "Installing zsh failed; exiting"; }
 
 warning_message "Checking zsh Installation"
 zsh --version || { error_message "Checking zsh Installation failed; exiting"; }
