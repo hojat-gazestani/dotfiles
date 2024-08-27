@@ -83,7 +83,7 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git)
-plugins=(macos vi-mode ansible git you-should-use docker zsh-autosuggestions zsh-completions zsh-syntax-highlighting sublime)
+plugins=(macos vi-mode ansible git you-should-use docker kubectl zsh-autosuggestions zsh-completions zsh-syntax-highlighting sublime)
 
 
 source $ZSH/oh-my-zsh.sh
