@@ -40,4 +40,3 @@ curl -sS https://starship.rs/install.sh | sudo sh || { error_message "Installing
 
 warning_message "Cloning zsh you should use"
 git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use || { error_message "Installing zsh you should use failed; exiting"; }
-
