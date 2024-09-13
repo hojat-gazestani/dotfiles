@@ -49,8 +49,8 @@ sudo systemctl is-active docker || { error_message "Docker is not active"; }
 warning_message "Adding ${USER} to docker group"
 sudo usermod -aG docker ${USER} || { error_message "Adding ${USER} to docker group failed"; }
 
-warning_message "Running docker ps"
-docker ps || { error_message "Running docker ps command failed"; }
+#warning_message "Running docker ps"
+#docker ps || { error_message "Running docker ps command failed"; }
 
 warning_message "Installing docker compose"
 sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose || { error_message "Downlaod failed" }
