@@ -67,3 +67,6 @@
 
 [merge]
     conflictStyle = zdiff3
+	tool = vimdiff2
+[gui]
+	recentrepo = /Users/hojat/Documents/ww/git/math.clone2

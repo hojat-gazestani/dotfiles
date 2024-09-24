@@ -117,6 +117,8 @@ alias py="python3"
 alias k="kubectl"
 alias kkk="k9s"
 
+gcmp() { gc -am "$1" && gp; }
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
