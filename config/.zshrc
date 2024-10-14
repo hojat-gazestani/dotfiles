@@ -117,6 +117,7 @@ alias py="python3"
 alias k="kubectl"
 alias kkk="k9s"
 
+g-ckeckout-commit() { git log --oneline --decorate | fzf --preview 'git diff main..$(echo {} | awk "{print \$1}") | delta --features line-numbers decorations' | awk "{print \$1}" | xargs git checkout; }
 gcmp() { gc -am "$1" && gp; }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

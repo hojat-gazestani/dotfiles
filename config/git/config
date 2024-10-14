@@ -1,16 +1,14 @@
 # This is Git's per-user configuration file.
 [user]
-	name = hojat-gazestani
-	email = hojatgazestani@gmail.com
-# Please adapt and uncomment the following lines:
-#	name = Hojat
-#	email = hojat@Hojats-MacBook-Pro.local
-#
+    name = hojat-gazestani
+    email = hojatgazestani@gmail.com
+
 [core]
     pager = delta
 
 [interactive]
     diffFilter = delta --color-only
+
 [delta]
     features = side-by-side line-numbers decorations
     syntax-theme = Monokai Extended
@@ -19,54 +17,52 @@
     minus-color = "#340001"
     side-by-side = false
     whitespace-error-style = 22 reverse
+
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
+
 [init]
-	defaultbranch = main
+    defaultbranch = main
+
 [help "*"]
-	autocorrect = prompt
+    autocorrect = prompt
 
 [color "branch"]
-        current = yellow reverse
-        local = yellow
-        remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 
 [color "diff"]
-        meta = yellow bold
-        frag = magenta bold
-        new = green bold
-        old = red bold
-        whitespace = red reverse
+    meta = yellow bold
+    frag = magenta bold
+    new = green bold
+    old = red bold
+    whitespace = red reverse
 
 [color "status"]
-        added = yellow
-        changed = green
-        untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 
 [pager]
-	status = true
-
-[core]
-    pager = delta
-
-[delta]
-    # https://dandavison.github.io/delta/configuration.html
-    hyperlinks = true
-    hyperlinks-file-link-format = "vscode://file/{path}:{line}"
-    line-numbers = true
-    navigate = true
-    syntax-theme = Monokai Extended
+    status = true
 
 [diff]
     colorMoved = default
 
-[interactive]
-    diffFilter = delta --color-only
-
 [merge]
     conflictStyle = zdiff3
-	tool = vimdiff2
+    tool = vimdiff2
+
 [gui]
-	recentrepo = /Users/hojat/Documents/ww/git/math.clone2
+    recentrepo = /Users/hojat/Documents/ww/git/math.clone2
+    recentrepo = /Users/hojat/Documents/ww/git/new/newrepo
+
+[alias]
+    git = !git
+	st = status
+	cmmtchck = !git log --oneline --decorate | fzf --preview \"git diff main..$(echo {} | awk \\\\\"{print \\$1}\\\\\") | delta --features line-numbers decorations\" | awk \"{print \\$1}\" | xargs git checkout
+	cmmtdiff = !git log --oneline --decorate | fzf --preview \"git diff main..$(echo {} | awk \\\\\"{print \\$1}\\\\\") | delta --features line-numbers decorations\" | awk \"{print \\$1}\"
+	switch-recent = !git branch --sort=-committerdate --format=\"%(refname:short)\" | fzf --preview=\"git log --date=relative --color main..{}\" | xargs git switch
