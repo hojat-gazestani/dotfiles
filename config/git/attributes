@@ -1,0 +1,20 @@
+*.py diff=python
+*.pyi diff=python
+*.sh diff=bash
+*.rs diff=rust
+*.md diff=markdown
+
+# Use pandoc for diffing document files.
+*.ipynb diff=pandoc-to-markdown
+*.odt diff=pandoc-to-markdown
+*.rtf diff=pandoc-to-markdown
+*.docx diff=pandoc-to-markdown
+
+# Use ExifTool for diffing media files
+*.avif diff=exiftool
+*.bmp diff=exiftool
+*.gif diff=exiftool
+*.jpeg diff=exiftool
+*.jpg diff=exiftool
+*.png diff=exiftool
+*.webp diff=exiftool
