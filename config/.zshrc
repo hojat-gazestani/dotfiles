@@ -143,3 +143,18 @@ export RIPGREP_CONFIG_PATH=~/.config/ripgreprc
 function rg() {
 	command rg --json $@ | delta;
 }
+
+function start_ssh_agent() {
+    echo "Please your ssh key pass phrase for this session: "
+    # Check if SSH agent is already running
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        # Start the SSH agent if it's not running
+        eval "$(ssh-agent -s)"
+    fi
+    # Add the SSH key to the agent
+    ssh-add ~/.ssh/id_ed25519
+}
+
+start_ssh_agent
+echo "Exporting Orca kubernetes config file"
+export KUBECONFIG=~/Documents/kube/orca
