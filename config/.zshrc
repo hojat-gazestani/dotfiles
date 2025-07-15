@@ -116,6 +116,19 @@ source $ZSH/oh-my-zsh.sh
 alias py="python3"
 alias k="kubectl"
 alias kkk="k9s"
+# Detect OS and set 'ls' alias appropriately
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Linux (GNU ls)
+    alias ls='ls -l --color=auto -h --group-directories-first'
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS (requires 'coreutils' for GNU ls)
+    if command -v gls &> /dev/null; then
+        alias ls='gls -l --color=auto -h --group-directories-first'
+    else
+        echo "⚠️ Install 'coreutils' for better 'ls' on macOS: brew install coreutils"
+        alias ls='ls -G -h'  # Fallback to BSD ls (no --group-directories-first)
+    fi
+fi
 
 g-ckeckout-commit() { git log --oneline --decorate | fzf --preview 'git diff main..$(echo {} | awk "{print \$1}") | delta --features line-numbers decorations' | awk "{print \$1}" | xargs git checkout; }
 gcmp() { gc -am "$1" && gp; }
@@ -126,6 +139,7 @@ gcmp() { gc -am "$1" && gp; }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
 
+export PATH="/usr/local/go/bin:$PATH"
 PATH=~/.console-ninja/.bin:$PATH
 # Created by `pipx` on 2024-07-06 08:56:01
 export PATH="$PATH:/Users/hojat/.local/bin"
@@ -158,3 +172,21 @@ function start_ssh_agent() {
 start_ssh_agent
 echo "Exporting Orca kubernetes config file"
 export KUBECONFIG=~/Documents/kube/orca
+
+zstyle ':completion:*:ssh:*' hosts $(awk '/^Host / {print $2}' ~/.ssh/config)
+export DJANGO_SECRET_KEY='r6@8mwjhf@@=+2^!_^lz!9z$x2aj-*5^cy9aw05pff!t^3ga(#'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/hojat/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/hojat/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/hojat/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/hojat/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
