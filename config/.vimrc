@@ -253,3 +253,43 @@ syntax enable
 " Persistent undo
 set undofile
 set undodir=~/.vim/undo
+
+" Go-specific settings
+augroup go_settings
+  autocmd!
+
+  " Basic Go formatting
+  autocmd FileType go setlocal shiftwidth=4
+  autocmd FileType go setlocal tabstop=4
+  autocmd FileType go setlocal softtabstop=4
+  autocmd FileType go setlocal noexpandtab " Go uses tabs by convention
+  autocmd FileType go setlocal autoindent
+
+  " Enable Go syntax highlighting
+  autocmd FileType go setlocal syntax=go
+
+  " Enable folding by syntax (optional)
+  autocmd FileType go setlocal foldmethod=syntax
+  autocmd FileType go setlocal foldlevel=99
+
+  " Go-specific key mappings
+  autocmd FileType go nnoremap <buffer> <leader>r :w<CR>:!go run %<CR>
+  autocmd FileType go nnoremap <buffer> <leader>b :w<CR>:!go build<CR>
+  autocmd FileType go nnoremap <buffer> <leader>t :w<CR>:!go test<CR>
+  autocmd FileType go nnoremap <buffer> <leader>f :w<CR>:!gofmt -w %<CR>:e<CR>
+
+  " Go-specific abbreviations
+  autocmd FileType go iabbrev <buffer> iff if err != nil {<CR>}<Esc>O
+  autocmd FileType go iabbrev <buffer> fun func () {<CR>}<Esc>O
+  autocmd FileType go iabbrev <buffer> main func main() {<CR>}<Esc>O
+
+  " Highlight trailing whitespace
+  autocmd FileType go highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd FileType go match ExtraWhitespace /\s\+$/
+augroup END
+
+" Also apply these settings to .go files
+augroup go_file_settings
+  autocmd!
+  autocmd BufNewFile,BufRead *.go set filetype=go
+augroup END
