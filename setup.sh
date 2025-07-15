@@ -13,3 +13,9 @@ if [ -f ~/.zshrc ] && [ ! -L ~/.zshrc ]; then
 fi
 [ ! -e ~/.config/.zshrc ] && ln -s "$PWD/config/.zshrc" ~/.zshrc
 [ ! -e ~/.config/ripgreprc ] && ln -s "$PWD/config/ripgreprc" ~/.config/ripgreprc
+
+# Link .vimrc
+if [ -f ~/.vimrc ] && [ ! -L ~/.vimrc ]; then
+  rm ~/.vimrc
+fi
+[ ! -e ~/.vimrc ] && ln -s "$PWD/config/.vimrc" ~/.vimrc
