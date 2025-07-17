@@ -293,3 +293,60 @@ augroup go_file_settings
   autocmd!
   autocmd BufNewFile,BufRead *.go set filetype=go
 augroup END
+
+" Bash-specific settings
+augroup bash_settings
+  autocmd!
+
+  " Basic Bash formatting
+  autocmd FileType sh setlocal shiftwidth=2
+  autocmd FileType sh setlocal tabstop=2
+  autocmd FileType sh setlocal softtabstop=2
+  autocmd FileType sh setlocal expandtab
+  autocmd FileType sh setlocal autoindent
+  autocmd FileType sh setlocal smartindent
+
+  " Enable Bash syntax highlighting
+  autocmd FileType sh setlocal syntax=sh
+
+  " Enable folding by syntax (optional)
+  autocmd FileType sh setlocal foldmethod=marker
+  autocmd FileType sh setlocal foldlevel=99
+
+  " Bash-specific key mappings
+  autocmd FileType sh nnoremap <buffer> <leader>r :w<CR>:!bash %<CR>
+  autocmd FileType sh nnoremap <buffer> <leader>x :w<CR>:!chmod +x % && ./%<CR>
+  autocmd FileType sh nnoremap <buffer> <leader>c I# <Esc>
+  autocmd FileType sh vnoremap <buffer> <leader>c :s/^/# /<CR>
+  autocmd FileType sh nnoremap <buffer> <leader>C ^x
+  autocmd FileType sh vnoremap <buffer> <leader>C :s/^# //<CR>
+
+  " Bash-specific abbreviations
+  autocmd FileType sh iabbrev <buffer> #! #!/bin/bash
+  autocmd FileType sh iabbrev <buffer> iff if [  ]; then<CR>fi<Esc>k$hi
+  autocmd FileType sh iabbrev <buffer> fori for i in ; do<CR>done<Esc>k$hi
+  autocmd FileType sh iabbrev <buffer> while while [  ]; do<CR>done<Esc>k$hi
+  autocmd FileType sh iabbrev <buffer> case case  in<CR>) ;;<CR>esac<Esc>k0f i
+  autocmd FileType sh iabbrev <buffer> func function  {<CR>}<Esc>k$hi
+
+  " Highlight problematic whitespace
+  autocmd FileType sh highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd FileType sh match ExtraWhitespace /\s\+$/
+
+  " Set comment string
+  autocmd FileType sh setlocal commentstring=#\ %s
+augroup END
+
+" Also apply these settings to .bash files
+augroup bash_file_settings
+  autocmd!
+  autocmd BufNewFile,BufRead *.bash set filetype=sh
+augroup END
+
+" ShellCheck integration (if installed)
+augroup shellcheck_settings
+  autocmd!
+  autocmd FileType sh setlocal makeprg=shellcheck\ -f\ gcc\ %
+  autocmd FileType sh setlocal errorformat=%f:%l:%c:\ %m
+  autocmd FileType sh nnoremap <buffer> <leader>l :make<CR>:cwindow<CR>
+augroup END
