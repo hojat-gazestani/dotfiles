@@ -10,3 +10,40 @@ style = "dimmed green"
 "dev-cluster.*" = "dev"
 "test-cluster.*" = "test"
 "prod-cluster.*" = "prod"
+
+[memory_usage]
+disabled = false
+threshold = -1
+symbol = ' '
+style = 'bold dimmed green'
+
+[os.symbols]
+AlmaLinux = "💠 "
+Alpine = "🏔️ "
+Amazon = "🙂 "
+Arch = "🎗️ "
+CentOS = "💠 "
+Debian = "🌀 "
+Fedora = "🎩 "
+FreeBSD = "😈 "
+Gentoo = "🗜️ "
+HardenedBSD = "🛡️ "
+Illumos = "🐦 "
+Kali = "🐉 "
+Linux = "🐧 "
+Manjaro = "🥭 "
+Mariner = "🌊 "
+NetBSD = "🚩 "
+OpenBSD = "🐡 "
+openSUSE = "🦎 "
+OracleLinux = "🦴 "
+Redhat = "🎩 "
+RedHatEnterprise = "🎩 "
+RockyLinux = "💠 "
+SUSE = "🦎 "
+Ubuntu = "🎯 "
+
+[os]
+format = "on [($name )]($style)"
+style = "bold blue"
+disabled = false
