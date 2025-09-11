@@ -116,6 +116,7 @@ source $ZSH/oh-my-zsh.sh
 alias py="python3"
 alias k="kubectl"
 alias kkk="k9s"
+alias t='tldr'
 # Detect OS and set 'ls' alias appropriately
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Linux (GNU ls)
@@ -171,7 +172,7 @@ function start_ssh_agent() {
 
 start_ssh_agent
 echo "Exporting Orca kubernetes config file"
-export KUBECONFIG=~/Documents/kube/orca
+export KUBECONFIG=~/.kube/config
 
 zstyle ':completion:*:ssh:*' hosts $(awk '/^Host / {print $2}' ~/.ssh/config)
 export DJANGO_SECRET_KEY='r6@8mwjhf@@=+2^!_^lz!9z$x2aj-*5^cy9aw05pff!t^3ga(#'
@@ -190,3 +191,10 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+export PATH="/usr/local/kerio/vpnclient:$PATH"
+
+#kubecolor() {
+#    command kubecolor "$@"
+#}
+#compdef kubecolor=kubectl

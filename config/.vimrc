@@ -350,3 +350,82 @@ augroup shellcheck_settings
   autocmd FileType sh setlocal errorformat=%f:%l:%c:\ %m
   autocmd FileType sh nnoremap <buffer> <leader>l :make<CR>:cwindow<CR>
 augroup END
+
+" Rust-specific settings
+augroup rust_settings
+  autocmd!
+
+  " Basic Rust formatting
+  autocmd FileType rust setlocal shiftwidth=4
+  autocmd FileType rust setlocal tabstop=4
+  autocmd FileType rust setlocal softtabstop=4
+  autocmd FileType rust setlocal expandtab
+  autocmd FileType rust setlocal autoindent
+  autocmd FileType rust setlocal smartindent
+
+  " Enable Rust syntax highlighting
+  autocmd FileType rust setlocal syntax=rust
+
+  " Enable folding by syntax (optional)
+  autocmd FileType rust setlocal foldmethod=syntax
+  autocmd FileType rust setlocal foldlevel=99
+
+  " Rust-specific key mappings
+  autocmd FileType rust nnoremap <buffer> <leader>r :w<CR>:!cargo run<CR>
+  autocmd FileType rust nnoremap <buffer> <leader>b :w<CR>:!cargo build<CR>
+  autocmd FileType rust nnoremap <buffer> <leader>t :w<CR>:!cargo test<CR>
+  autocmd FileType rust nnoremap <buffer> <leader>c :w<CR>:!cargo check<CR>
+  autocmd FileType rust nnoremap <buffer> <leader>f :w<CR>:!rustfmt %<CR>:e<CR>
+  autocmd FileType rust nnoremap <buffer> <leader>d :w<CR>:!rustdoc %<CR>
+
+  " Rust-specific abbreviations
+  autocmd FileType rust iabbrev <buffer> fn fn () {<CR>}<Esc>O
+  autocmd FileType rust iabbrev <buffer> main fn main() {<CR>}<Esc>O
+  autocmd FileType rust iabbrev <buffer> struct pub struct  {<CR>}<Esc>O
+  autocmd FileType rust iabbrev <buffer> enum pub enum  {<CR>}<Esc>O
+  autocmd FileType rust iabbrev <buffer> impl impl  {<CR>}<Esc>O
+  autocmd FileType rust iabbrev <buffer> trait pub trait  {<CR>}<Esc>O
+  autocmd FileType rust iabbrev <buffer> match match  {<CR>}<Esc>O
+  autocmd FileType rust iabbrev <buffer> vec vec![]
+  autocmd FileType rust iabbrev <buffer> println println!("");<Left><Left><Left>
+  autocmd FileType rust iabbrev <buffer> eprintln eprintln!("");<Left><Left><Left>
+  autocmd FileType rust iabbrev <buffer> format format!("");<Left><Left><Left>
+  autocmd FileType rust iabbrev <buffer> letm let mut  = ;<Left><Left>
+  autocmd FileType rust iabbrev <buffer> ifl if let  =  {<CR>}<Esc>O
+
+  " Comment mappings
+  autocmd FileType rust nnoremap <buffer> <leader>c I// <Esc>
+  autocmd FileType rust vnoremap <buffer> <leader>c :s/^/\/\/ /<CR>
+  autocmd FileType rust nnoremap <buffer> <leader>C ^3x
+  autocmd FileType rust vnoremap <buffer> <leader>C :s/^\/\/ //<CR>
+
+  " Highlight trailing whitespace
+  autocmd FileType rust highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd FileType rust match ExtraWhitespace /\s\+$/
+
+  " Set comment string
+  autocmd FileType rust setlocal commentstring=//\ %s
+
+  " Enable racer (Rust code completion) if installed
+  autocmd FileType rust setlocal omnifunc=racer#Complete
+
+  " Enable rust.vim enhanced features
+  autocmd FileType rust let g:rustfmt_autosave = 1
+  autocmd FileType rust let g:rust_clip_command = 'xclip -selection clipboard'
+augroup END
+
+" Also apply these settings to .rs files
+augroup rust_file_settings
+  autocmd!
+  autocmd BufNewFile,BufRead *.rs set filetype=rust
+augroup END
+
+" Cargo.toml file settings
+augroup toml_settings
+  autocmd!
+  autocmd BufNewFile,BufRead Cargo.toml set filetype=toml
+  autocmd FileType toml setlocal shiftwidth=2
+  autocmd FileType toml setlocal tabstop=2
+  autocmd FileType toml setlocal softtabstop=2
+  autocmd FileType toml setlocal expandtab
+augroup END
