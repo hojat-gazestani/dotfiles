@@ -17,30 +17,7 @@ threshold = -1
 symbol = ' '
 style = 'bold dimmed green'
 
-[os.symbols]
-AlmaLinux = "💠 "
-Alpine = "🏔️ "
-Amazon = "🙂 "
-Arch = "🎗️ "
-CentOS = "💠 "
-Debian = "🌀 "
-Fedora = "🎩 "
-FreeBSD = "😈 "
-Gentoo = "🗜️ "
-Kali = "🐉 "
-Linux = "🐧 "
-Manjaro = "🥭 "
-NetBSD = "🚩 "
-OpenBSD = "🐡 "
-openSUSE = "🦎 "
-Redhat = "🎩 "
-RedHatEnterprise = "🎩 "
-RockyLinux = "💠 "
-SUSE = "🦎 "
-Ubuntu = "🎯 "
-Macos = "🍎 "
-
 [os]
-format = "on [($name )]($style)"
-style = "bold blue"
+format = "on ($name)($hostname)"
 disabled = false
+style = "bold blue"

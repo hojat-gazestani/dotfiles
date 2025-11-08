@@ -117,6 +117,7 @@ alias py="python3"
 alias k="kubectl"
 alias kkk="k9s"
 alias t='tldr'
+alias nv="nvim"
 # Detect OS and set 'ls' alias appropriately
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Linux (GNU ls)
