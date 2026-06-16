@@ -1,4 +1,3 @@
-source .env
 GH_TOKEN=$VAR_GH_TOKEN
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -118,6 +117,7 @@ alias k="kubectl"
 alias kkk="k9s"
 alias t='tldr'
 alias nv="nvim"
+alias bat="batcat"
 # Detect OS and set 'ls' alias appropriately
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Linux (GNU ls)
@@ -199,3 +199,5 @@ export PATH="/usr/local/kerio/vpnclient:$PATH"
 #    command kubecolor "$@"
 #}
 #compdef kubecolor=kubectl
+eval "$(uv generate-shell-completion zsh)"
+set -a; [ -f ~/.env ] && source ~/.env; set +a
