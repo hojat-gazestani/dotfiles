@@ -82,4 +82,37 @@ require("lazy").setup({
   "tpope/vim-surround",
   "tpope/vim-fugitive",
 
+   --  code compoanion
+  {
+    "olimorris/codecompanion.nvim",
+    version = "^19.0.0",
+    opts = {
+      adapters = {
+        http = {
+          qwen = function()
+            return require("codecompanion.adapters").extend(
+              "openai_compatible",
+              {
+                env = {
+                  url = "OPENAI_BASE_URL",
+                  api_key = "OPENAI_API_KEY",
+                },
+              }
+            )
+          end,
+        },
+      },
+
+      strategies = {
+        chat = { adapter = "qwen" },
+        inline = { adapter = "qwen" },
+        cmd = { adapter = "qwen" },
+      },
+    },
+    dependencies = {
+      "ravitemer/mcphub.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  }, 
 })
