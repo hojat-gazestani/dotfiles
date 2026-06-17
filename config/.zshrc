@@ -193,7 +193,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export PATH="/usr/local/kerio/vpnclient:$PATH"
+export PATH="/usr/local/kerio/vpnclient:/opt/nvim/bin:$PATH"
 
 #kubecolor() {
 #    command kubecolor "$@"
