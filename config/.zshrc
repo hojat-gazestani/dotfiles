@@ -199,5 +199,6 @@ export PATH="/usr/local/kerio/vpnclient:/opt/nvim/bin:$PATH"
 #    command kubecolor "$@"
 #}
 #compdef kubecolor=kubectl
-eval "$(uv generate-shell-completion zsh)"
 set -a; [ -f ~/.env ] && source ~/.env; set +a
+eval "$(uv generate-shell-completion zsh)"
+
