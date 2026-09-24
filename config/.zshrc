@@ -207,3 +207,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH=/home/hojat/.opencode/bin:$PATH
+
+# opencode
+export PATH=/Users/hojat/.opencode/bin:$PATH

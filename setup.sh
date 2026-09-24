@@ -82,6 +82,7 @@ create_symlink "$CONFIG_DIR/.zshrc" "$HOME/.zshrc" "Zsh config"
 create_symlink "$CONFIG_DIR/ripgreprc" "$HOME/.config/ripgreprc" "Ripgrep config"
 create_symlink "$CONFIG_DIR/.vimrc" "$HOME/.vimrc" "Vim config"
 create_symlink "$CONFIG_DIR/nvim/" "$HOME/.config/nvim" "neoim config"
+create_symlink "$CONFIG_DIR/opencode/skills" "$HOME/.config/opencode/skills" "neoim config"
 
 # Additional macOS-specific configuration
 if [ "$(uname)" = "Darwin" ]; then
