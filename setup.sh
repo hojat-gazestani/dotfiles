@@ -81,18 +81,8 @@ create_symlink "$CONFIG_DIR/starship.toml"  "$HOME/.config/starship.toml" "Stars
 create_symlink "$CONFIG_DIR/.zshrc" "$HOME/.zshrc" "Zsh config"
 create_symlink "$CONFIG_DIR/ripgreprc" "$HOME/.config/ripgreprc" "Ripgrep config"
 create_symlink "$CONFIG_DIR/.vimrc" "$HOME/.vimrc" "Vim config"
-create_symlink "$CONFIG_DIR/nvim/" "$HOME/.config/nvim" "neoim config"
-create_symlink "$CONFIG_DIR/opencode/skills" "$HOME/.config/opencode/skills" "neoim config"
-
-# Additional macOS-specific configuration
-if [ "$(uname)" = "Darwin" ]; then
-    echo "macOS detected, applying additional configurations..."
-
-    # Link macOS-specific files if they exist
-    if [ -d "$CONFIG_DIR/macos" ]; then
-        create_symlink "$CONFIG_DIR/macos/terminal" "$HOME/Library/Preferences/com.apple.Terminal.plist" "Terminal preferences" 2>/dev/null || true
-    fi
-fi
+create_symlink "$CONFIG_DIR/nvim" "$HOME/.config/nvim" "neovim config"
+create_symlink "$CONFIG_DIR/opencode/skills" "$HOME/.config/opencode/skills" "opencode skills"
 
 echo ""
 success_message "Dotfiles setup completed successfully!"

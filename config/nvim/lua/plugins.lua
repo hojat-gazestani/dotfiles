@@ -42,6 +42,7 @@ require("lazy").setup({
 
   {
     "williamboman/mason-lspconfig.nvim",
+    opts = { ensure_installed = { "basedpyright" } },
   },
 
   --  autocomplete
@@ -104,7 +105,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-  }, 
+  },
 
   -- nini move
   "echasnovski/mini.move",

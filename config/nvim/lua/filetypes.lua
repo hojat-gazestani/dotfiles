@@ -9,27 +9,19 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   command = "set filetype=sh"
 })
 
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = "*.go",
-  command = "set filetype=go"
-})
-
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = "*.rs",
-  command = "set filetype=rust"
-})
-
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = "*.yml",
-  command = "set filetype=yaml"
-})
-
 -- ruff auto format
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.py",
   callback = function()
     if vim.fn.executable("ruff") == 1 then
-      vim.cmd("silent !ruff format %")
+      local path = vim.fn.expand("%")
+      local formatted = vim.fn.system(
+        { "ruff", "format", "--stdin-filename", path, "-" },
+        table.concat(vim.fn.getline(1, "$"), "\n")
+      )
+      if vim.v.shell_error == 0 then
+        vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(formatted, "\n", { plain = true }))
+      end
     end
   end,
 })

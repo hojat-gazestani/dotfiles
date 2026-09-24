@@ -34,6 +34,7 @@ Before running the scripts, ensure you have the following installed:
    ```bash
    git clone https://github.com/hojat-gazestani/dotfiles.git
    cd dotfiles
+   ```
 
 2. **Run the Install Script:**
 
@@ -43,5 +44,6 @@ Before running the scripts, ensure you have the following installed:
 
 3. **Run the Setup Script:**
 
-    ```bash
-    ./setup.sh
+     ```bash
+     ./setup.sh
+     ```

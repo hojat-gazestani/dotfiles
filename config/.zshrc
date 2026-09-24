@@ -1,6 +1,4 @@
-source .env
-[ -f ~/.env ] && source ~/.env
-export GH_TOKEN=$VAR_GH_TOKEN
+set -a; [ -f ~/.env ] && source ~/.env; set +a
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -11,6 +9,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/go/bin:$PATH"
+export PATH="$HOME/.opencode/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -135,8 +134,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 
-g-ckeckout-commit() { git log --oneline --decorate | fzf --preview 'git diff main..$(echo {} | awk "{print \$1}") | delta --features line-numbers decorations' | awk "{print \$1}" | xargs git checkout; }
-gcmp() { gc -am "$1" && gp; }
+g-checkout-commit() { git log --oneline --decorate | fzf --preview 'git diff main..$(echo {} | awk "{print \$1}") | delta --features line-numbers decorations' | awk "{print \$1}" | xargs git checkout; }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -147,7 +145,7 @@ ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_V
 export PATH="/usr/local/go/bin:$PATH"
 PATH=~/.console-ninja/.bin:$PATH
 # Created by `pipx` on 2024-07-06 08:56:01
-export PATH="$PATH:/Users/hojat/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 export PATH="$JAVA_HOME/bin:$PATH"
 
@@ -166,19 +164,20 @@ function rg() {
 }
 
 function start_ssh_agent() {
-    echo "Please your ssh key pass phrase for this session: "
-    # Check if SSH agent is already running
+    # Start the SSH agent if it's not running
     if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-        # Start the SSH agent if it's not running
-        eval "$(ssh-agent -s)"
+        eval "$(ssh-agent -s)" > /dev/null
     fi
-    # Add the SSH key to the agent
-    ssh-add ~/.ssh/id_ed25519
+    # Add the SSH key to the agent only if it's not already loaded
+    local fingerprint
+    fingerprint=$(ssh-keygen -l -f ~/.ssh/id_ed25519 2>/dev/null | awk '{print $2}')
+    if [[ -n $fingerprint ]] && ! ssh-add -l 2>/dev/null | grep -q "$fingerprint"; then
+        echo "Enter your SSH key passphrase for this session:"
+        ssh-add ~/.ssh/id_ed25519
+    fi
 }
 
 start_ssh_agent
-echo "Exporting Orca kubernetes config file"
-export KUBECONFIG=~/.kube/config
 
 zstyle ':completion:*:ssh:*' hosts $(awk '/^Host / {print $2}' ~/.ssh/config)
 
@@ -193,20 +192,4 @@ if [[ -d "$HOME/anaconda3" ]]; then
     fi
     unset __conda_setup
 fi
-# <<< conda initialize <<<
-
-export PATH="/usr/local/kerio/vpnclient:/opt/nvim/bin:$PATH"
-
-#kubecolor() {
-#    command kubecolor "$@"
-#}
-#compdef kubecolor=kubectl
 eval "$(uv generate-shell-completion zsh)"
-set -a; [ -f ~/.env ] && source ~/.env; set +a
-export PATH="$HOME/.local/bin:$PATH"
-
-# opencode
-export PATH=/home/hojat/.opencode/bin:$PATH
-
-# opencode
-export PATH=/Users/hojat/.opencode/bin:$PATH
