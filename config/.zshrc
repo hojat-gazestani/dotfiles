@@ -119,10 +119,14 @@ alias kkk="k9s"
 alias t='tldr'
 alias nv="nvim"
 alias bat="batcat"
+alias kboard='gsettings set org.gnome.desktop.input-sources sources "[('\''xkb'\'', '\''us'\'')]";gsettings set org.gnome.desktop.input-sources sources "[('\''xkb'\'', '\''us'\''), ('\''xkb'\'', '\''ir+pes_keypad'\'')]"'
 # Detect OS and set 'ls' alias appropriately
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Linux (GNU ls)
-    alias ls='ls -l --color=auto -h --group-directories-first'
+    alias ls='eza'
+    alias lst='eza --tree'
+    alias lstl='eza --tree --long'
+    alias lst2='eza --tree --level=2'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS (requires 'coreutils' for GNU ls)
     if command -v gls &> /dev/null; then
